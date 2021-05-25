@@ -10,8 +10,9 @@ import lombok.Data;
 
 
 @Data
+
 @Entity
-@Table(name="jobs")
+@Table(name="job_positions")
 public class Job {
 	
 	@Id
@@ -19,8 +20,11 @@ public class Job {
 	@Column(name="id" )
 	private int id;
 	
-	@Column(name="jobname")
+	@Column(name="position")
 	private String job_title;
+
+	
+
 	
 	
 	
