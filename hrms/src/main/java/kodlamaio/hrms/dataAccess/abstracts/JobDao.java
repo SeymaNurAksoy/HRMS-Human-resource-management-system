@@ -2,8 +2,10 @@ package kodlamaio.hrms.dataAccess.abstracts;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import kodlamaio.hrms.entities.concretes.Job;
+import kodlamaio.hrms.entities.concretes.JobPosition;
 
-public interface JobDao extends JpaRepository<Job, Integer>{
+public interface JobDao extends JpaRepository<JobPosition, Integer>{
+	
+	JobPosition findByPosition(String position);
 
 }

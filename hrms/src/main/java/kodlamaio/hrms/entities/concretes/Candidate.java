@@ -1,87 +1,43 @@
 package kodlamaio.hrms.entities.concretes;
 
 import javax.persistence.Column;
+
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
-
-
+@EqualsAndHashCode(callSuper = true)
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Table(name ="candidates")
-public class Candidate extends User{
+@Table(name = "candidates")
 
+public class Candidate extends User {
 
-	public Candidate(int id, String email, String password, String confirmPassword, int id2, String firstName,
-			String lastName, int dateOfBirth, long nationalityId) {
-		super(id, email, password, confirmPassword);
-		id = id2;
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.dateOfBirth = dateOfBirth;
-		this.nationalityId = nationalityId;
-	}
-
-	@Id
-	@GeneratedValue
-	@Column(name="id" )
-	private int id;
-	
-	@Column(name="firstname" )
+	@NotBlank(message = "İsim alanı boş bırakılamaz")
+	@Column(name = "firstname")
 	private String firstName;
-	
-	@Column(name="lastname" )
+
+	@NotBlank(message = "Soyisim alanı boş bırakılamaz")
+	@Column(name = "lastname")
 	private String lastName;
-	
-	@Column(name="birthdate" )
-	private int dateOfBirth;
-	
-	@Column(name="identity_number" )
-	private long nationalityId;
 
-	public int getId() {
-		return id;
-	}
+	@NotBlank(message = "TC numarası alanı boş bırakılamaz")
+	@Size(min = 11, max = 11, message = "TC numarası 11 karakter uzunluğunda olmalıdır.")
+	@Column(name = "identity_number")
+	private String identificationNumber;
 
-	public void setId(int id) {
-		this.id = id;
-	}
+	@NotNull(message = "Doğum yılı alanı boş bırakılamaz")
+	@Column(name = "birthdate")
+	private int birthDate;
 
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-
-	public int getDateOfBirth() {
-		return dateOfBirth;
-	}
-
-	public void setDateOfBirth(int dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
-	}
-
-	public long getNationalityId() {
-		return nationalityId;
-	}
-
-	public void setNationalityId(long nationalityId) {
-		this.nationalityId = nationalityId;
-	}
-	
-	
-	
-	
 }
